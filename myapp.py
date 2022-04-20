@@ -10,5 +10,5 @@ st.image(image)
 
 st.dataframe(chart_data)
 options = st.selectbox('Select an option', ['a','b','c'])
-st.bar_chart(option)
+st.bar_chart(options)
 

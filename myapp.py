@@ -11,4 +11,4 @@ st.image(image)
 st.dataframe(chart_data)
 option= st.selectbox(['a','b','c'])
 st.bar_chart(option)
-@st.cache
+

@@ -10,5 +10,5 @@ st.image(image)
 
 st.dataframe(chart_data)
 @st.cache
-box = st.selectbox('Selcet option', ['a','b','c'])
-st.bar_chart(box)
+option = st.selectbox(['a','b','c'])
+st.bar_chart(option)

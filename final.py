@@ -10,7 +10,6 @@ df = pd.DataFrame(cur.fetchall(), columns = ['Countries'])
 
 import streamlit as st
 import pandas as pd
-countries = []
 acronym = df['Acronym']
 countries = []
 for i in acronym:

@@ -11,7 +11,9 @@ df = pd.DataFrame(cur.fetchall(), columns = ['Countries'])
 import streamlit as st
 import pandas as pd
 countries = []
-for i in df:
-  countries = countries.append(i)
+acronym = df['Acronym']
+countries = []
+for i in acronym:
+  countries.append(i)
 
 country_acronym = st.selectbox('Country acronym', countries)

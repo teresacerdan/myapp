@@ -15,4 +15,4 @@ countries = []
 for i in acronym:
   countries.append(i)
 
-country_acronym = st.selectbox('Country acronym', countries)
+country_acronym = st.radio('Country acronym', countries)

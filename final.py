@@ -10,9 +10,9 @@ df = pd.DataFrame(cur.fetchall(), columns = ['Countries', 'Acronym'])
 
 import streamlit as st
 import pandas as pd
-acronym = df['Acronym']
+acronym = df['Country']
 countries = []
 for i in acronym:
   countries.append(i)
 
-country_acronym = st.selectbox('Country acronym', countries)
+country_acronym = st.selectbox('Country name', countries)

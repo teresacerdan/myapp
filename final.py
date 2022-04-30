@@ -17,6 +17,6 @@ for i in acronym:
 country_selected = st.selectbox('Country name', countries)
 
 
-cur.execute('SELECT ecContribution, name, shortName, activityType, organizationURL FROM Participants GROUP BY organizationURL')
+cur.execute('SELECT ecContribution, name, shortName, activityType, COUNT(organizationURL) FROM Participants GROUP BY organizationURL')
 df_participants = pd.DataFrame(cur.fetchall(), columns= ['shortName', 'name', 'activityType', 'Sum', 'count_project'])
 st.dataframe(df_participants)

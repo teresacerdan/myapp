@@ -14,5 +14,9 @@ acronym = df['Countries']
 countries = []
 for i in acronym:
   countries.append(i)
+country_selected = st.selectbox('Country name', countries)
 
-country_acronym = st.selectbox('Country name', countries)
+
+cur.execute('SELECT ecContribution, name, shortName, activityType, organizationURL FROM Participants GROUP BY organizationURL')
+df_participants = pd.DataFrame(cur.fetchall(), columns= ['shortName', 'name', 'activityType', 'Sum', 'count_project'])
+st.dataframe(df_participants)

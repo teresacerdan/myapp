@@ -17,7 +17,7 @@ for i in countries_column:
 country_selected = st.selectbox('Country name', countries)
 st.write('You selected:', country_selected)
 
-acronym_selected=pd.read_sql("SELECT Acronym FROM Countries WHERE Country='country_selected'") 
+acronym_selected=pd.read_sql("SELECT Acronym FROM Countries WHERE Country='country_selected'", conn) 
                              
 cur.execute("SELECT country, shortName, name, activityType, ecContribution, organizationURL, COUNT(organizationURL) FROM Participants WHERE role = 'coordinator' AND country = 'acronym_selected' GROUP BY organizationURL ORDER BY ecContribution DESC")
 df_participants = pd.DataFrame(cur.fetchall(), columns= ['country', 'shortName', 'name', 'activityType', 'Sum','organizationURL', 'count_project'])

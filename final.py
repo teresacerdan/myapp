@@ -19,7 +19,7 @@ st.write('You selected:', country_selected)
 
 country_country=str(country_selected)
 
-acronym_selected=cur.execute("SELECT Acronym FROM Countries WHERE Country=str(country_selected)") 
+acronym_selected=cur.execute("SELECT Acronym FROM Countries WHERE Country=country_country") 
                              
 cur.execute("SELECT country, shortName, name, activityType, ecContribution, organizationURL, COUNT(organizationURL) FROM Participants WHERE role = 'coordinator' AND country = country_selected GROUP BY organizationURL ORDER BY ecContribution DESC")
 df_participants = pd.DataFrame(cur.fetchall(), columns= ['country', 'shortName', 'name', 'activityType', 'Sum','organizationURL', 'count_project'])

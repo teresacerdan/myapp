@@ -19,7 +19,6 @@ st.write('You selected:', country_selected)
 
 acronym_selected=pd.read_sql("SELECT Acronym FROM Countries WHERE Country='country_selected'", conn) 
                              
-cur.execute("SELECT country, shortName, name, activityType, ecContribution, organizationURL, COUNT(organizationURL) FROM Participants")
-df_participants = pd.DataFrame(cur.fetchall(), columns= ['country', 'shortName', 'name', 'activityType', 'Sum','organizationURL', 'count_project'])
-conn.close()
+c1=pd.read_sql("SELECT country, shortName, name, activityType, ecContribution, organizationURL, COUNT(organizationURL) FROM Participants WHERE role = 'coordinator' AND country='FR' GROUP BY organizationURL ORDER BY ecContribution DESC",conn)
+df_participants = pd.DataFrame(c1, columns= ['country', 'shortName', 'name', 'activityType', 'Sum','organizationURL', 'count'])
 st.dataframe(df_participants)

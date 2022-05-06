@@ -16,7 +16,7 @@ for i in countries_column:
   countries.append(i)
 country_selected = st.selectbox('Country name', countries)
 st.write('You selected:', country_selected)
-print dtype(country_selected)
+dtype(country_selected)
 
 acronym_selected=cur.execute("SELECT Acronym FROM Countries WHERE Country=str(country_selected)") 
                              

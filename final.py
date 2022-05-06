@@ -21,4 +21,4 @@ acronym_selected=cur.execute("SELECT Acronym FROM Countries WHERE Country='count
                              
 cur.execute("SELECT country, shortName, name, activityType, ecContribution, organizationURL, COUNT(organizationURL) FROM Participants WHERE role = 'coordinator' AND country = 'acronym_selected' GROUP BY organizationURL ORDER BY ecContribution DESC")
 df_participants = pd.DataFrame(cur.fetchall(), columns= ['country', 'shortName', 'name', 'activityType', 'Sum','organizationURL', 'count_project'])
-st.write(df_participants)
+st.dataframe(df_participants)

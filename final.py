@@ -12,7 +12,7 @@ import streamlit as st
 import pandas as pd
 countries_column = df['Countries']
 countries = []
-for i in acronym:
+for i in countries_column:
   countries.append(i)
 country_selected = st.selectbox('Country name', countries)
 st.write('You selected:', country_selected)

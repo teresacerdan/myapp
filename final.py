@@ -10,7 +10,7 @@ df = pd.DataFrame(cur.fetchall(), columns = ['Countries', 'Acronym'])
 
 import streamlit as st
 import pandas as pd
-countries_column = df['Acronym']
+countries_column = df['Countries']
 countries = []
 for i in countries_column:
   countries.append(i)

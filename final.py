@@ -42,7 +42,7 @@ df_participants = pd.DataFrame(participants, columns= ['country', 'shortName', '
 #appplying background color to df
 df_participants = df_participants.style.set_properties(**{'background-color': 'floralwhite',
                                                           'color': 'black',
-                                                          'border-color': 'darkcyan'})
+                                                          'border-color': 'lightsteelblue'})
 st.dataframe(df_participants)
 
 st.write('Coordinators of', country_selected)

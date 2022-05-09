@@ -59,8 +59,7 @@ styles = [
   dict(selector="th", props=th_props),
   dict(selector="td", props=td_props)
   ]
-df_participants = df_participants.set_table_styles(styles)
-st.dataframe(display(df_participants))
+st.dataframe(display(df_participants.set_table_styles(styles)))
 
              
 st.write('Coordinators of', country_selected)

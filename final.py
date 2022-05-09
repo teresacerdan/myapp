@@ -40,9 +40,9 @@ st.write('Participants of', country_selected)
 participants=pd.read_sql("SELECT country, shortName, name, activityType, SUM(ecContribution), organizationURL, COUNT(organizationURL) FROM Participants WHERE role = 'participant' AND country = '{}' GROUP BY organizationURL ORDER BY SUM(ecContribution)DESC".format(my_acronym),conn)
 df_participants = pd.DataFrame(participants, columns= ['country', 'shortName', 'name', 'activityType', 'Sum','organizationURL', 'count_project'])  
 #appplying background color to df
-df_participants.style.set_properties(**{'background-color': 'floralwhite',
-                           'color': 'black',
-                           'border-color': 'darkcyan'})
+df_participants = df_participants.style.set_properties(**{'background-color': 'floralwhite',
+                                                          'color': 'black',
+                                                          'border-color': 'darkcyan'})
 st.dataframe(df_participants)
 
 st.write('Coordinators of', country_selected)

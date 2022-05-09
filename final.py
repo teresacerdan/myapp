@@ -51,7 +51,7 @@ st.dataframe(df_participants)
 st.header('Coordinators of {}'.format(country_selected))
 cur.execute("SELECT shortName, name, ActivityType, projectAcronym FROM participants WHERE role='coordinator' AND country='{}'ORDER BY shortName".format(my_acronym))
 df_coordinators = pd.DataFrame(cur.fetchall(), columns= ['Short Name', 'Name', 'Activity Type', 'Project Acronym'])  
-df_coordinators = df_coordinators.style.set_properties(**{'background-color': 'lightblue',
+df_coordinators = df_coordinators.style.set_properties(**{'background-color': 'lightcyan',
                                                           'color': 'black',
                                                           'border-color': 'white'})
 st.dataframe(df_coordinators)

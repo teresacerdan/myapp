@@ -40,21 +40,27 @@ st.write('Participants of', country_selected)
 participants=pd.read_sql("SELECT country, shortName, name, activityType, SUM(ecContribution), organizationURL, COUNT(organizationURL) FROM Participants WHERE role = 'participant' AND country = '{}' GROUP BY organizationURL ORDER BY SUM(ecContribution)DESC".format(my_acronym),conn)
 df_participants = pd.DataFrame(participants, columns= ['country', 'shortName', 'name', 'activityType', 'Sum','organizationURL', 'count_project'])  
 #appplying background color to df
-cell_hover = {  # for row hover use <tr> instead of <td>
-    'selector': 'thead',
-    'props': [('background-color', 'dodgerblue'),("color", "white"),
-              ("border", "3px solid red"),]
-}
-index_names = {
-    'selector': '.index_name',
-    'props': 'font-style: italic; color: darkgrey; font-weight:normal;'
-}
-headers = {
-    'selector': 'th.row_heading',
-    'props': [("background-color", "orange"), ("color", "green"),
-              ("border", "3px solid black")]
-}
-df_participants = df_participants.style.set_table_styles([cell_hover, index_names, headers])
+# Set CSS properties for th elements in dataframe
+th_props = [
+  ('font-size', '11px'),
+  ('text-align', 'center'),
+  ('font-weight', 'bold'),
+  ('color', '#6d6d6d'),
+  ('background-color', '#f7f7f9')
+  ]
+
+# Set CSS properties for td elements in dataframe
+td_props = [
+  ('font-size', '11px')
+  ]
+
+# Set table styles
+styles = [
+  dict(selector="th", props=th_props),
+  dict(selector="td", props=td_props)
+  ]
+
+df_participants = df_participants.style.set_table_styles(styles)
 df_participants
 st.dataframe(df_participants)
 

@@ -55,6 +55,7 @@ headers = {
               ("border", "3px solid black")]
 }
 df_participants = df_participants.set_table_styles([cell_hover, index_names, headers])
+df_participants
 st.dataframe(df_participants)
 
 st.write('Coordinators of', country_selected)

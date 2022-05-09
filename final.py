@@ -120,6 +120,6 @@ c = alt.Chart(df_contribution_per_year).mark_bar().encode(
   x = 'year',
   y = 'ecContribution'
 )
-st.altair_chart(c, use_container_width=True)
+st.altair_chart(c, use_container_width=False)
         
 

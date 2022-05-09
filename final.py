@@ -114,3 +114,13 @@ cur.execute("SELECT SUM(ecContribution), year FROM Participants JOIN Projects ON
 df_contribution_per_year=pd.DataFrame(cur.fetchall(), columns=['ecContribution', 'year'])
 st.bar_chart(df_contribution_per_year)
 
+import plotly.graph_objects as go
+fig = px.bar(
+  df_contribution_per_year,
+  x = 'year',
+  y = 'ecContribution',
+  title = 'Bar Graph'
+)
+st.plotly_chart(fig)
+        
+

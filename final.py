@@ -59,8 +59,8 @@ styles = [
   dict(selector="th", props=th_props),
   dict(selector="td", props=td_props)
   ]
-
-st.dataframe(df_participants.style.apply(lambda x: "background-color: red"))
+df_participants = df_participants.set_table_styles(styles)
+st.dataframe(display(df_participants)
 
 st.write('Coordinators of', country_selected)
 coordinators=pd.read_sql("SELECT shortName, name, ActivityType, projectAcronym FROM participants WHERE role='coordinator' AND country='{}'ORDER BY shortName".format(my_acronym),conn)

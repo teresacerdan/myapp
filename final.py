@@ -54,7 +54,8 @@ headers = {
     'props': [("background-color", "orange"), ("color", "green"),
               ("border", "3px solid black")]
 }
-df_participants = df_participants.set_table_styles([cell_hover, index_names, headers])
+df_participants = df_participants.style.
+                                        set_table_styles([cell_hover, index_names, headers])
 df_participants
 st.dataframe(df_participants)
 

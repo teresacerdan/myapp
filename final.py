@@ -49,8 +49,8 @@ st.dataframe(df_participants)
 
 #Dataframe of coordinators
 st.header('Coordinators of {}'.format(country_selected))
-coordinators=pd.read_sql("SELECT shortName, name, ActivityType, projectAcronym FROM participants WHERE role='coordinator' AND country='{}'ORDER BY shortName".format(my_acronym),conn)
-df_coordinators = pd.DataFrame(coordinators, columns= ['Short Name', 'Name', 'Activity Type', 'Project Acronym'])  
+cur.execute("SELECT shortName, name, ActivityType, projectAcronym FROM participants WHERE role='coordinator' AND country='{}'ORDER BY shortName".format(my_acronym))
+df_coordinators = pd.DataFrame(cur.fetchall(), columns= ['Short Name', 'Name', 'Activity Type', 'Project Acronym'])  
 st.dataframe(df_coordinators)
 
 

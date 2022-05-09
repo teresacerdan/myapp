@@ -40,25 +40,10 @@ participants=pd.read_sql("SELECT country, shortName, name, activityType, SUM(ecC
 df_participants = pd.DataFrame(participants, columns= ['country', 'shortName', 'name', 'activityType', 'Sum','organizationURL', 'count_project'])  
 #appplying background color to df
 # Set CSS properties for th elements in dataframe
-th_props = [
-  ('font-size', '11px'),
-  ('text-align', 'center'),
-  ('font-weight', 'bold'),
-  ('color', '#6d6d6d'),
-  ('background-color', '#f7f7f9')
-  ]
-
-# Set CSS properties for td elements in dataframe
-td_props = [
-  ('font-size', '11px')
-  ]
-
-# Set table styles
-styles = [
-  dict(selector="th", props=th_props),
-  dict(selector="td", props=td_props)
-  ]
-st.dataframe(df_participants.set_table_styles(styles))
+df_participants = df_participants.set_properties(**{'background-color': 'lightblue',
+                                                    'color': 'black',
+                                                    'border-color': 'white'})
+st.dataframe(df_participants)
 
              
 st.write('Coordinators of', country_selected)

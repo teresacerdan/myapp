@@ -115,14 +115,11 @@ df_contribution_per_year=pd.DataFrame(cur.fetchall(), columns=['ecContribution',
 st.bar_chart(df_contribution_per_year)
 
 
-pip install plotly==5.7.0
-import plotly.graph_objects as go
-fig = px.bar(
-  df_contribution_per_year,
+import altair as alt
+c = alt.Chart(df_contribution_per_year).mark_bar().encode(
   x = 'year',
-  y = 'ecContribution',
-  title = 'Bar Graph'
+  y = 'ecContribution'
 )
-st.plotly_chart(fig)
+st.altair_chart(c, use_container_width=True)
         
 

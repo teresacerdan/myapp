@@ -41,18 +41,20 @@ participants=pd.read_sql("SELECT country, shortName, name, activityType, SUM(ecC
 df_participants = pd.DataFrame(participants, columns= ['country', 'shortName', 'name', 'activityType', 'Sum','organizationURL', 'count_project'])  
 #appplying background color to df
 cell_hover = {  # for row hover use <tr> instead of <td>
-    'selector': 'td:hover',
-    'props': [('background-color', '#ffffb3')]
+    'selector': 'thead',
+    'props': [('background-color', 'dodgerblue'),("color", "white"),
+              ("border", "3px solid red"),]
 }
 index_names = {
     'selector': '.index_name',
     'props': 'font-style: italic; color: darkgrey; font-weight:normal;'
 }
 headers = {
-    'selector': 'th:not(.index_name)',
-    'props': 'background-color: #000066; color: white;'
+    'selector': 'th.row_heading',
+    'props': [("background-color", "orange"), ("color", "green"),
+              ("border", "3px solid black")]
 }
-df_participants =df_participants.set_table_styles([cell_hover, index_names, headers])
+df_participants = df_participants.style.set_table_styles([cell_hover, index_names, headers])
 st.dataframe(df_participants)
 
 st.write('Coordinators of', country_selected)

@@ -40,7 +40,7 @@ participants=pd.read_sql("SELECT country, shortName, name, activityType, SUM(ecC
 df_participants = pd.DataFrame(participants, columns= ['country', 'shortName', 'name', 'activityType', 'Sum','organizationURL', 'count_project'])  
 #appplying background color to df
 # Set CSS properties for th elements in dataframe
-df_participants = df_participants.set_properties(**{'background-color': 'lavender',
+df_participants = df_participants.style.set_properties(**{'background-color': 'lavender',
                                                     'color': 'black',
                                                     'border-color': 'white'})
 st.dataframe(df_participants)

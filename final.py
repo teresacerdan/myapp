@@ -39,7 +39,6 @@ st.write('Participants of', country_selected)
 participants=pd.read_sql("SELECT country, shortName, name, activityType, SUM(ecContribution), organizationURL, COUNT(organizationURL) FROM Participants WHERE role = 'participant' AND country = '{}' GROUP BY organizationURL ORDER BY SUM(ecContribution)DESC".format(my_acronym),conn)
 df_participants = pd.DataFrame(participants, columns= ['country', 'shortName', 'name', 'activityType', 'Sum','organizationURL', 'count_project'])  
 #appplying background color to df
-from IPython.display import display
 # Set CSS properties for th elements in dataframe
 th_props = [
   ('font-size', '11px'),
@@ -59,7 +58,7 @@ styles = [
   dict(selector="th", props=th_props),
   dict(selector="td", props=td_props)
   ]
-st.dataframe(display(df_participants.set_table_styles(styles)))
+st.dataframe(df_participants.set_table_styles(styles))
 
              
 st.write('Coordinators of', country_selected)

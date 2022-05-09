@@ -109,7 +109,8 @@ df_coordinators = df_coordinators.style.set_properties(**{'background-color': 'l
 st.dataframe(df_coordinators)
 
 #Graph
-cur.execute("SELECT SUM(ecContribution), year FROM Participants JOIN Projects ON Participants.projectID=Projects.projectID WHERE country = 'ES' GROUP BY year ")
+st.header('Yearly EC contribution in {} (€)'.format(country_selected))
+cur.execute("SELECT SUM(ecContribution), year FROM Participants JOIN Projects ON Participants.projectID=Projects.projectID WHERE country = '{}' GROUP BY year".format(country_selected)
 df_contribution_per_year=pd.DataFrame(cur.fetchall(), columns=['ecContribution', 'year'])
 st.bar_chart(df_contribution_per_year)
 

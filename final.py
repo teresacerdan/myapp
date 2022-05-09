@@ -115,7 +115,7 @@ df_contribution_per_year=pd.DataFrame(cur.fetchall(), columns=['ecContribution',
 st.bar_chart(df_contribution_per_year)
 
 
-pip install plotly
+pip install plotly==5.7.0
 import plotly.graph_objects as go
 fig = px.bar(
   df_contribution_per_year,

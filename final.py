@@ -116,9 +116,10 @@ st.bar_chart(df_contribution_per_year)
 
 
 import altair as alt
-c = alt.Chart(df_contribution_per_year).mark_bar().encode(
+c = alt.Chart(df_contribution_per_year).mark_bar(barSize=20).encode(
   x = 'year',
   y = 'ecContribution'
+  color = 'symbol'
 )
 st.altair_chart(c, use_container_width=False)
 

@@ -15,7 +15,7 @@ countries_column = df['Countries']
 countries = []
 
 #Title and image
-image=Image.open('KDT JU logo full1.png')
+image=Image.open('KDT JU logo full1.jpg')
 st.image(image)
 st.title('Partner search tool')
 

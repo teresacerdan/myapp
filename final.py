@@ -23,7 +23,7 @@ st.title('Partner search tool')
 for i in countries_column:
   countries.append(i)
 st.subheader('Country name')
-country_selected = st.selectbox('', countries)
+country_selected = st.selectbox(, countries)
 
 for i in range(len(countries)):
   if countries[i]==country_selected:
@@ -115,11 +115,6 @@ df_coordinators = df_coordinators.style.set_properties(**{'background-color': 'l
                                                           'border-color': 'white'})
 st.dataframe(df_coordinators)
 
-#Graph
-st.header('Yearly EC contribution in {} (€)'.format(country_selected))
-cur.execute("SELECT SUM(ecContribution), year FROM Participants JOIN Projects ON Participants.projectID=Projects.projectID WHERE country = '{}' GROUP BY year".format(my_acronym))
-df_contribution_per_year=pd.DataFrame(cur.fetchall(), columns=['ecContribution', 'year'])
-st.bar_chart(df_contribution_per_year.set_index('year'))
 
 
 import altair as alt

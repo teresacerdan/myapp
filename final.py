@@ -22,8 +22,7 @@ st.title('Partner search tool')
 #Selectbox with list of countries (association with the acronym)
 for i in countries_column:
   countries.append(i)
-st.subheader('Country name')
-country_selected = st.selectbox(, countries)
+country_selected = st.selectbox('Country name', countries)
 
 for i in range(len(countries)):
   if countries[i]==country_selected:

@@ -109,9 +109,9 @@ def acronym_function(x):
 
 df_coordinators['Keywords'] = df_coordinators['Project Acronym'].apply(acronym_function)
 ##Style of df
-df_coordinators = df_coordinators.style.set_properties(**{'background-color': '#80ACD5',
+df_coordinators = df_coordinators.style.set_properties(**{'background-color': '#BFD7ED',
                                                           'color': 'black',
-                                                          'border-color': 'steelblue'})
+                                                          'border-color': 'white'})
 st.dataframe(df_coordinators)
 
 

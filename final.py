@@ -112,8 +112,7 @@ st.dataframe(df_coordinators)
 st.header('Yearly EC contribution in {} (€)'.format(country_selected))
 cur.execute("SELECT SUM(ecContribution), year FROM Participants JOIN Projects ON Participants.projectID=Projects.projectID WHERE country = '{}' GROUP BY year".format(my_acronym))
 df_contribution_per_year=pd.DataFrame(cur.fetchall(), columns=['ecContribution', 'year'])
-df_contribution_per_year=df_contribution_per_year.style.hide_index()
-st.bar_chart(df_contribution_per_year)
+st.bar_chart(df_contribution_per_year.style.die_index())
 
 
 import altair as alt

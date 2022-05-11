@@ -36,6 +36,12 @@ my_acronym=acronym[position]
 
 st.write('You selected:', country_selected,',',my_acronym)
 
+#Graph
+st.header('Yearly EC contribution in {} (€)'.format(country_selected))
+cur.execute("SELECT SUM(ecContribution), year FROM Participants JOIN Projects ON Participants.projectID=Projects.projectID WHERE country = '{}' GROUP BY year".format(my_acronym))
+df_contribution_per_year=pd.DataFrame(cur.fetchall(), columns=['ecContribution', 'year'])
+st.bar_chart(df_contribution_per_year.set_index('year'))
+
 #Dataframe of participants
 st.header('Participants of {}'.format(country_selected))
 cur.execute("SELECT country, shortName, name, activityType, SUM(ecContribution), organizationURL, COUNT(organizationURL) FROM Participants WHERE role = 'participant' AND country = '{}' GROUP BY organizationURL ORDER BY SUM(ecContribution)DESC".format(my_acronym))

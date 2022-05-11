@@ -109,18 +109,13 @@ def acronym_function(x):
 
 df_coordinators['Keywords'] = df_coordinators['Project Acronym'].apply(acronym_function)
 ##Style of df
-df_coordinators = df_coordinators.style.set_properties(**{'background-color': 'lightsteelblue',
+df_coordinators = df_coordinators.style.set_properties(**{'background-color': 'aliceblue',
                                                           'color': 'black',
-                                                          'border-color': 'white'})
+                                                          'border-color': 'steelblue'})
 st.dataframe(df_coordinators)
 
 
 
-import altair as alt
-c = alt.Chart(df_contribution_per_year).mark_bar(color="darkblue", size=40).encode(
-  x = 'year',
-  y = 'ecContribution'
-)
-st.altair_chart(c, use_container_width=False)
+
         
 

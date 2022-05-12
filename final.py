@@ -52,7 +52,7 @@ df_participants = df_participants1.style.set_properties(**{'background-color': '
                                                     'color': 'black',
                                                     'border-color': 'white'})
 
-if len(df_coordinators_new.index)==0: 
+if len(df_participants.index)==0: 
   print('There is no information')
 else:
   st.dataframe(df_participants)

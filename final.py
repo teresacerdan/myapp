@@ -59,9 +59,9 @@ def convert(df):
 file_participants=convert(df_participants1)
 
 st.download_button(
-  label= 'Download participants data as CSV', 
+  label='Download participants data from {} as CSV'.format(country_selected), 
   data=file_participants, 
-  file_name='participants.csv', 
+  file_name='participants_{}.csv'.format(country_selected), 
   mime='text/csv'
 )
 
@@ -128,7 +128,7 @@ st.dataframe(df_coordinators_new)
 
 file_coordinators=convert(df_coordinators)
 st.download_button(
-  label='Download participants data from {} as CSV'.format(country_selected), 
+  label='Download coordinators data from {} as CSV'.format(country_selected), 
   data=file_coordinators, 
   file_name='coordinators_{}.csv'.format(country_selected), 
   mime='text/csv'

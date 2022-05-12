@@ -52,6 +52,10 @@ df_participants = df_participants.style.set_properties(**{'background-color': '#
                                                     'color': 'black',
                                                     'border-color': 'white'})
 st.dataframe(df_participants)
+@st.cache 
+def convert_df(df_participants):
+ return df_participants.to_csv().encode('utf-8')
+st.download_button(label="participants_table",data=convert_df(df_participants), file_name='participants_data.csv', mime='text/csv',)
 
 #Dataframe of coordinators
 st.header('Coordinators of {}'.format(country_selected))

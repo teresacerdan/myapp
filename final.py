@@ -52,8 +52,10 @@ df_participants = df_participants1.style.set_properties(**{'background-color': '
                                                     'color': 'black',
                                                     'border-color': 'white'})
 st.dataframe(df_participants)
+def convert(df):
+  return df.to_csv().encode('utf-8')
 
-file_participants=df_participants1.to_csv().encode('utf-8')
+file_participants=convert(df_participants1)
 st.download_button(
   label= 'Download participants data as CSV', 
   data=file_participants, 

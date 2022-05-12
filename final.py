@@ -128,7 +128,7 @@ st.dataframe(df_coordinators_new)
 
 file_coordinators=convert(df_coordinators)
 st.download_button(
-  label='Download participants data from '{}' as CSV'.format(country_selected), 
+  label='Download participants data from {} as CSV'.format(country_selected), 
   data=file_coordinators, 
   file_name='coordinators.csv', 
   mime='text/csv'

@@ -53,7 +53,6 @@ df_participants = df_participants.style.set_properties(**{'background-color': '#
                                                     'border-color': 'white'})
 st.dataframe(df_participants)
 
-@st.cache 
 def convert_df(df):
   return df.to_csv().encode('utf-8') 
 file_participants=convert_df(df_participants)

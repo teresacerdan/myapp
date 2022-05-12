@@ -52,6 +52,7 @@ df_participants = df_participants1.style.set_properties(**{'background-color': '
                                                     'color': 'black',
                                                     'border-color': 'white'})
 st.dataframe(df_participants)
+@st.cache
 def convert(df):
   return df.to_csv().encode('utf-8')
 
@@ -124,6 +125,7 @@ df_coordinators = df_coordinators.style.set_properties(**{'background-color': '#
                                                           'color': 'black',
                                                           'border-color': 'white'})
 st.dataframe(df_coordinators)
+
 file_coordinators=convert(df_coordinators)
 st.download_button(
   label= 'Download participants data as CSV', 

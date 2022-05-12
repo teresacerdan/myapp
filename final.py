@@ -45,15 +45,15 @@ st.bar_chart(df_contribution_per_year.set_index('year'))
 #Dataframe of participants
 st.header('Participants of {}'.format(country_selected))
 cur.execute("SELECT country, shortName, name, activityType, SUM(ecContribution), organizationURL, COUNT(organizationURL) FROM Participants WHERE role = 'participant' AND country = '{}' GROUP BY organizationURL ORDER BY SUM(ecContribution)DESC".format(my_acronym))
-df_participants = pd.DataFrame(cur.fetchall(), columns= ['country', 'shortName', 'name', 'activityType', 'Sum','organizationURL', 'count_project'])  
+df_participants1 = pd.DataFrame(cur.fetchall(), columns= ['country', 'shortName', 'name', 'activityType', 'Sum','organizationURL', 'count_project'])  
 #appplying background color to df
 # Set CSS properties for th elements in dataframe
-df_participants = df_participants.style.set_properties(**{'background-color': '#e1f3ff',
+df_participants = df_participants1.style.set_properties(**{'background-color': '#e1f3ff',
                                                     'color': 'black',
                                                     'border-color': 'white'})
 st.dataframe(df_participants)
 
-file_participants=df_participants.to_csv(df_participants).encode('utf-8')
+file_participants=df_participants1.to_csv(df_participants).encode('utf-8')
 
 st.download_button(label= 'Download participants data as CSV', data=file_participants, file_name=f'{country}_participants.csv', mime='text/csv')
 #Dataframe of coordinators

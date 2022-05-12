@@ -53,9 +53,9 @@ df_participants = df_participants1.style.set_properties(**{'background-color': '
                                                     'border-color': 'white'})
 st.dataframe(df_participants)
 
-file_participants=df_participants1.to_csv(df_participants).encode('utf-8')
-
+file_participants=df_participants1.to_csv().encode('utf-8')
 st.download_button(label= 'Download participants data as CSV', data=file_participants, file_name=f'{country}_participants.csv', mime='text/csv')
+
 #Dataframe of coordinators
 st.header('Coordinators of {}'.format(country_selected))
 cur.execute("SELECT shortName, name, ActivityType, projectAcronym FROM participants WHERE role='coordinator' AND country='{}'ORDER BY shortName".format(my_acronym))

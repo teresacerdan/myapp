@@ -124,7 +124,10 @@ df_coordinators['Keywords'] = df_coordinators['Project Acronym'].apply(acronym_f
 df_coordinators_new = df_coordinators.style.set_properties(**{'background-color': '#BFD7ED',
                                                           'color': 'black',
                                                           'border-color': 'white'})
-st.dataframe(df_coordinators_new)
+if len(df_coordinators_new.index)==0: 
+  print('There is no information')
+else:
+    st.dataframe(df_coordinators_new)
 
 file_coordinators=convert(df_coordinators)
 st.download_button(

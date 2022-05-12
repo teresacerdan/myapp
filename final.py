@@ -52,10 +52,6 @@ df_participants = df_participants1.style.set_properties(**{'background-color': '
                                                     'color': 'black',
                                                     'border-color': 'white'})
 
-if len(df_participants.index)==0: 
-  print('There is no information')
-else:
-  st.dataframe(df_participants)
   
 @st.cache
 def convert(df):
@@ -63,12 +59,18 @@ def convert(df):
 
 file_participants=convert(df_participants1)
 
-st.download_button(
+if len(df_participants.index)==0: 
+  st.write('Sorry, there is no information')
+else:
+  st.dataframe(df_participants)
+  st.download_button(
   label='Download participants data from {} as CSV'.format(country_selected), 
   data=file_participants, 
   file_name='participants_{}.csv'.format(country_selected), 
   mime='text/csv'
 )
+  
+
 
 #Dataframe of coordinators
 st.header('Coordinators of {}'.format(country_selected))
@@ -129,18 +131,20 @@ df_coordinators['Keywords'] = df_coordinators['Project Acronym'].apply(acronym_f
 df_coordinators_new = df_coordinators.style.set_properties(**{'background-color': '#BFD7ED',
                                                           'color': 'black',
                                                           'border-color': 'white'})
-if len(df_coordinators_new.index)==0: 
-  print('There is no information')
-else:
-    st.dataframe(df_coordinators_new)
 
 file_coordinators=convert(df_coordinators)
-st.download_button(
+
+if len(df_coordinators_new.index)==0: 
+  st.write('Sorry, there is no information')
+else:
+    st.dataframe(df_coordinators_new)
+    st.download_button(
   label='Download coordinators data from {} as CSV'.format(country_selected), 
   data=file_coordinators, 
   file_name='coordinators_{}.csv'.format(country_selected), 
   mime='text/csv'
 )
+
 
 
 

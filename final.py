@@ -130,7 +130,7 @@ file_coordinators=convert(df_coordinators)
 st.download_button(
   label='Download participants data from {} as CSV'.format(country_selected), 
   data=file_coordinators, 
-  file_name='coordinators.csv', 
+  file_name='coordinators_{}.csv'.format(country_selected), 
   mime='text/csv'
 )
 

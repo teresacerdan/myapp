@@ -51,7 +51,12 @@ df_participants1 = pd.DataFrame(cur.fetchall(), columns= ['country', 'shortName'
 df_participants = df_participants1.style.set_properties(**{'background-color': '#e1f3ff',
                                                     'color': 'black',
                                                     'border-color': 'white'})
-st.dataframe(df_participants)
+
+if len(df_coordinators_new.index)==0: 
+  print('There is no information')
+else:
+  st.dataframe(df_participants)
+  
 @st.cache
 def convert(df):
   return df.to_csv().encode('utf-8')

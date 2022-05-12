@@ -56,10 +56,11 @@ def convert(df):
   return df.to_csv().encode('utf-8')
 
 file_participants=convert(df_participants1)
+
 st.download_button(
   label= 'Download participants data as CSV', 
   data=file_participants, 
-  file_name='my_file.csv', 
+  file_name='participants.csv', 
   mime='text/csv'
 )
 
@@ -123,7 +124,13 @@ df_coordinators = df_coordinators.style.set_properties(**{'background-color': '#
                                                           'color': 'black',
                                                           'border-color': 'white'})
 st.dataframe(df_coordinators)
-
+file_coordinators=convert(df_coordinators)
+st.download_button(
+  label= 'Download participants data as CSV', 
+  data=file_coordinators, 
+  file_name='coordinators.csv', 
+  mime='text/csv'
+)
 
 
 

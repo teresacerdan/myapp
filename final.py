@@ -56,7 +56,8 @@ cur.execute("SELECT country, shortName, name, activityType, SUM(ecContribution),
 df_participants1 = pd.DataFrame(cur.fetchall(), columns= ['country', 'shortName', 'name', 'activityType', 'Sum','organizationURL', 'count_project'])  
 #appplying background color to df
 # Set CSS properties for th elements in dataframe
-df_participants = df_participants1.style.set_properties(**{'background-color': '#e1f3ff',
+df_participants = df_participants1.style.
+                                   set_properties(**{'background-color': '#e1f3ff',
                                                     'color': 'black',
                                                     'border-color': 'white'})
 

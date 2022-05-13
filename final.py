@@ -38,7 +38,11 @@ st.write('You selected:', country_selected,',',my_acronym)
 
 #Graph
 st.header('Yearly EC contribution in {} (€)'.format(country_selected))
-cur.execute("SELECT SUM(ecContribution), year FROM Participants JOIN Projects ON Participants.projectID=Projects.projectID WHERE country = '{}' GROUP BY year".format(my_acronym))
+cur.execute('''SELECT SUM(ecContribution), year 
+               FROM Participants 
+               JOIN Projects ON Participants.projectID=Projects.projectID 
+               WHERE country = '{}' 
+               GROUP BY year'''.format(my_acronym))
 df_contribution_per_year=pd.DataFrame(cur.fetchall(), columns=['ecContribution', 'year'])
 
 if len(df_contribution_per_year.index)==0:

@@ -4,6 +4,8 @@ from sqlite3 import connect
 
 conn = sqlite3.connect('db1.db')
 cur = conn.cursor()
+
+#creation of a new dataframe with the countries' information. 
 cur.execute('SELECT Country, Acronym FROM Countries')
 df = pd.DataFrame(cur.fetchall(), columns = ['Countries', 'Acronym'])
 
@@ -11,6 +13,8 @@ df = pd.DataFrame(cur.fetchall(), columns = ['Countries', 'Acronym'])
 import streamlit as st
 import pandas as pd
 from PIL import Image
+
+#selection of the column with the country names.
 countries_column = df['Countries']
 countries = []
 
@@ -24,49 +28,61 @@ for i in countries_column:
   countries.append(i)
 country_selected = st.selectbox('Country name', countries)
 
+#location of the country selected within the created list. 
 for i in range(len(countries)):
   if countries[i]==country_selected:
     position=i
-  
+
+#creation of a new dataframe with the acronyms. 
 acronym_column = df['Acronym']
 acronym=[]
 for i in acronym_column:
   acronym.append(i)
+
+#selection of the acronym in the same position as the country selected before. 
 my_acronym=acronym[position]
 
 st.write('You selected:', country_selected,',',my_acronym)
 
-#Graph
+#Graph creation with information about the country selected. 
 st.header('Yearly EC contribution in {} (€)'.format(country_selected))
 cur.execute('''SELECT SUM(ecContribution), year 
                FROM Participants 
                JOIN Projects ON Participants.projectID=Projects.projectID 
                WHERE country = '{}' 
                GROUP BY year'''.format(my_acronym))
+
+#creation of a dataframe with all the information extract from the above query. 
 df_contribution_per_year=pd.DataFrame(cur.fetchall(), columns=['ecContribution', 'year'])
 
+#if statement to display or not the graph. 
 if len(df_contribution_per_year.index)==0:
   st.write('Sorry, there is no information')
 else:
+  #the years will be set as the index of the graph. 
   st.bar_chart(df_contribution_per_year.set_index('year'))
 
-#Dataframe of participants
+#DATAFRAME OF PARTICIPANTS OF THE COUNTRY SELECTED. 
 st.header('Participants of {}'.format(country_selected))
 cur.execute("SELECT country, shortName, name, activityType, SUM(ecContribution), organizationURL, COUNT(organizationURL) FROM Participants WHERE role = 'participant' AND country = '{}' GROUP BY organizationURL ORDER BY SUM(ecContribution)DESC".format(my_acronym))
 df_participants1 = pd.DataFrame(cur.fetchall(), columns= ['country', 'shortName', 'name', 'activityType', 'Sum','organizationURL', 'count_project'])  
+
 #appplying background color to df
-# Set CSS properties for th elements in dataframe
+# Set CSS properties for the elements in dataframe
 df_participants = df_participants1.style.set_properties(**{'background-color': '#e1f3ff',
                                                            'color': 'black',
                                                            'border-color': 'white'})
 
-  
+#creation of the download button. 
 @st.cache
+#creation of a function to convert the existing dataframes to csv format. 
 def convert(df):
   return df.to_csv().encode('utf-8')
 
+#participants dataframe is converted to csv using the previous function. 
 file_participants=convert(df_participants1)
 
+#if statement to show or not the table (depending on whether it is empty or not. 
 if len(df_participants.index)==0: 
   st.write('Sorry, there is no information')
 else:
@@ -80,10 +96,13 @@ else:
   
 
 
-#Dataframe of coordinators
+#DATAFRAME OF COORDINATORS OF THE CHOSEN COUNTRY. 
 st.header('Coordinators of {}'.format(country_selected))
+
+#Query to extract the information of the coordinators of the chosen country. 
 cur.execute("SELECT shortName, name, ActivityType, projectAcronym FROM participants WHERE role='coordinator' AND country='{}'ORDER BY shortName".format(my_acronym))
 df_coordinators = pd.DataFrame(cur.fetchall(), columns= ['Short Name', 'Name', 'Activity Type', 'Project Acronym']) 
+
 ##Keyword function incorporation
 def acronym_function(x):
     d = {'MATQu': 'computing, technology, qubit', 'HELoS': 'initiative, medical, device, technology', 
@@ -134,14 +153,18 @@ def acronym_function(x):
      'TARANTO': 'project, high, system', 'TEMPO': 'neuromorphic, dnn, technology', 'OCEAN12': 'fdsoi, technology, low'}
     return d[x]
 
+#creation of a new column in the just-created dataframe. 
 df_coordinators['Keywords'] = df_coordinators['Project Acronym'].apply(acronym_function)
 ##Style of df
 df_coordinators_new = df_coordinators.style.set_properties(**{'background-color': '#BFD7ED',
                                                           'color': 'black',
                                                           'border-color': 'white'})
 
+#DOWNLOAD BUTTON COORDINATORS. 
+#The new dataframe is converted into CSV format using the previously created function. 
 file_coordinators=convert(df_coordinators)
 
+#if statement to show or not the coordinators' dataframe (depending on whether it is empty or not). 
 if len(df_coordinators_new.index)==0: 
   st.write('Sorry, there is no information')
 else:

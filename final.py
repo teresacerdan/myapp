@@ -43,7 +43,8 @@ cur.execute('''SELECT SUM(ecContribution), year
                JOIN Projects ON Participants.projectID=Projects.projectID 
                WHERE country = '{}' 
                GROUP BY year'''.format(my_acronym))
-df_contribution_per_year=pd.DataFrame(cur.fetchall(), columns=['ecContribution', 'year'])
+df_contribution_per_year=pd.DataFrame(cur.fetchall(), 
+                                      columns=['ecContribution', 'year'])
 
 if len(df_contribution_per_year.index)==0:
   st.write('Sorry, there is no information')
